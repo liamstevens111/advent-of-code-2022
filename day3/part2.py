@@ -28,7 +28,6 @@ def solve(data):
 
 
 def get_priority_value_from_rucksacks(rucksacks):
-    print(rucksacks)
     common_item = set(rucksacks[0]).intersection(rucksacks[1], rucksacks[2])
     return get_priority_value_from_item(common_item.pop())
 
