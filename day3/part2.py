@@ -9,22 +9,11 @@ item_priority_values = dict(
 
 
 def solve(data):
-    total = 0
+    required_count = 3
 
-    required_rucksacks = 3
-    current_rucksack = 0
-    rucksacks = []
-
-    for rucksack in data:
-        rucksacks.append(rucksack)
-        current_rucksack += 1
-
-        if current_rucksack == required_rucksacks:
-            total += get_priority_value_from_rucksacks(rucksacks)
-            current_rucksack = 0
-            rucksacks.clear()
-
-    return total
+    return (sum
+            ([get_priority_value_from_rucksacks(data[i:i+required_count])
+              for i in range(0, len(data), required_count)]))
 
 
 def get_priority_value_from_rucksacks(rucksacks):
