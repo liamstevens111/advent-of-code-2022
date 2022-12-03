@@ -9,12 +9,8 @@ item_priority_values = dict(
 
 
 def solve(data):
-    total_value = 0
-
-    for rucksack in data:
-        total_value += get_priority_value_from_rucksack(rucksack)
-
-    return total_value
+    return (sum([get_priority_value_from_rucksack(rucksack)
+                 for rucksack in data]))
 
 
 def get_priority_value_from_rucksack(rucksack):
