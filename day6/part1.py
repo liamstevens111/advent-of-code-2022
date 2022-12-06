@@ -1,17 +1,15 @@
 def solve(data, unique_length):
-    last_four_characters = []
-    last_four_characters.extend(data[0:unique_length])
+    last_characters = []
+    last_characters.extend(data[0:unique_length])
 
-    print(last_four_characters)
-
-    if len(set(last_four_characters)) == unique_length:
-        return (last_four_characters)
+    if len(set(last_characters)) == unique_length:
+        return last_characters
 
     for i in range(unique_length, len(data)):
-        last_four_characters.pop(0)
-        last_four_characters.append(data[i])
+        last_characters.pop(0)
+        last_characters.append(data[i])
 
-        if len(set(last_four_characters)) == unique_length:
+        if len(set(last_characters)) == unique_length:
             return i+1
 
 
