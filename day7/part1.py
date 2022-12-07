@@ -2,10 +2,7 @@ def solve(data):
     total_file_system_space = 70000000
     unused_space_requirement = 30000000
 
-    path_sizes = {
-
-    }
-
+    path_sizes = {}
     current_path = []
     root_size = 0
 
@@ -26,36 +23,27 @@ def solve(data):
             else:
                 path_sizes["/".join(current_path)[1:]] += int(values[0])
 
-    first_level_directories_size = 0
-
-    for k, v in path_sizes.items():
-        if k.count("/") == 1:
-            first_level_directories_size += v
+    first_level_directories_size = sum(
+        v for k, v in path_sizes.items() if k.count("/") == 1)
 
     path_sizes["/"] = root_size + first_level_directories_size
 
     del path_sizes[""]
 
-    output = 0
-
-    for k, v in path_sizes.items():
-        if v <= 100000:
-            output += v
+    total_size_of_required_directories = sum(
+        [v for k, v in path_sizes.items() if v <= 100000])
 
     # Part 1
-    print(output)
+    print(total_size_of_required_directories)
 
     unused_space = total_file_system_space - path_sizes["/"]
     needed_space = unused_space_requirement - unused_space
 
-    possible_vals = []
-
-    for v in path_sizes.values():
-        if v >= needed_space:
-            possible_vals.append(v)
+    minimum_space_to_remove = min(
+        [v for v in path_sizes.values() if v >= needed_space])
 
     # Part 2
-    print(min(possible_vals))
+    print(minimum_space_to_remove)
 
 
 if __name__ == '__main__':
